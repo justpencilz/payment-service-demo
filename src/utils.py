@@ -119,7 +119,6 @@ def sanitize_input(value: str, max_length: int = 256, allow_newlines: bool = Fal
     if not allow_newlines:
         cleaned = cleaned.replace("\n", " ").replace("\r", " ")
 
-    # Collapse runs of whitespace into single spaces
     import re
     cleaned = re.sub(r"[ \t]+", " ", cleaned)
 
