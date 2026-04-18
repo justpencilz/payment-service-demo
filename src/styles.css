@@ -1,0 +1,78 @@
+/* Payment Service Dashboard — Styles */
+
+:root {
+  --primary: #635bff;
+  --danger: #e53935;
+  --success: #43a047;
+  --gray-100: #f6f7fa;
+  --gray-800: #2d2f31;
+  --radius: 8px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--gray-100);
+  color: var(--gray-800);
+  line-height: 1.6;
+}
+
+.card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: 0 1px 3px rgba(0,0,0,.08);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.card h2 {
+  font-size: 1.15rem;
+  margin-bottom: .75rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .55rem 1.1rem;
+  border: none;
+  border-radius: var(--radius);
+  font-size: .875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s;
+}
+
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: #5052d6; }
+.btn-danger  { background: var(--danger);  color: #fff; }
+.btn-danger:hover  { background: #c62828; }
+
+input, select {
+  width: 100%;
+  padding: .5rem .75rem;
+  border: 1px solid #ddd;
+  border-radius: var(--radius);
+  font-size: .875rem;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99,91,255,.15);
+}
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1rem; }
+
+.status-badge {
+  display: inline-block;
+  padding: .15rem .55rem;
+  border-radius: 999px;
+  font-size: .75rem;
+  font-weight: 600;
+}
+
+.status-succeeded { background: #e8f5e9; color: var(--success); }
+.status-pending   { background: #fff3e0; color: #ef6c00; }
+.status-failed    { background: #ffebee; color: var(--danger); }
