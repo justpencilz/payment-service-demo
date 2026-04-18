@@ -97,6 +97,40 @@ def retry(max_attempts: int = 3, backoff_base: float = 2.0, retryable: Optional[
     return decorator
 
 
+def sanitize_input(value: str, max_length: int = 256, allow_newlines: bool = False) -> str:
+    """Sanitize a user-supplied string for safe storage and display.
+
+    Strips leading/trailing whitespace, collapses internal whitespace runs
+    into single spaces, and truncates to *max_length* characters. Optionally
+    removes newlines entirely.
+
+    Returns the cleaned string. Raises ``ValueError`` if the result is empty.
+
+    Args:
+        value: Raw input string.
+        max_length: Maximum allowed length after trimming.
+        allow_newlines: If ``True``, preserve newline characters.
+    """
+    if not isinstance(value, str):
+        raise TypeError(f"Expected str, got {type(value).__name__}")
+
+    cleaned = value.strip()
+
+    if not allow_newlines:
+        cleaned = cleaned.replace("\n", " ").replace("\r", " ")
+
+    # Collapse runs of whitespace into single spaces
+    import re
+    cleaned = re.sub(r"[ \t]+", " ", cleaned)
+
+    cleaned = cleaned[:max_length].strip()
+
+    if not cleaned:
+        raise ValueError("Input must not be empty or whitespace-only")
+
+    return cleaned
+
+
 # ---------------------------------------------------------------------------
 # Pagination
 # ---------------------------------------------------------------------------
